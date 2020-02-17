@@ -5,6 +5,12 @@ function obtenerDirectorioActual(){
 	return getcwd();
 }
 
+//Obtener el contenido de un directorio
+function verContenidoDirectorio($ruta, $nombre){
+  $rutaCompleta = $ruta.$nombre;
+  return scandir($rutaCompleta);
+}
+
 //Creación de archivos y directorios
 function crearArchivo($ruta,$nombre){
   $rutaCompleta = $ruta.$nombre;
@@ -38,5 +44,16 @@ function eliminarArchivo($ruta,$nombre){
   }
   else{
     return 'El archivo que quieres eliminar no existe';
+  }
+}
+
+function eliminarDirectorio($ruta,$nombre){
+  $rutaCompleta = $ruta.$nombre;
+  if(is_dir($rutaCompleta)){
+    rmdir($rutaCompleta);
+    return 'El directorio ha sido eliminado';
+  }
+  else{
+    return 'El directorio no existe';
   }
 }
