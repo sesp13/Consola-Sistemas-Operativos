@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>Administrador de archivos</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,11 +30,30 @@
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
+      <div class="page-header">
+        <h1>Administrador de archivos <small><?php echo "aqui va el directorio" ?></small></h1>
+      </div>
       <!-- Main Content -->
       <div id="content">
 
-        
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Carpeta</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+          </tbody>
+        </table>
 
       </div>
       <!-- End of Main Content -->
