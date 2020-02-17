@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+include 'php/funciones.php'; 
+session_start();
+/*session is started if you don't write this line can't use $_Session  global variable*/
+$_SESSION["directorio"]=obtenerDirectorioActual();
 
+?>
 <head>
 
   <meta charset="utf-8">
@@ -31,7 +37,7 @@
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <div class="page-header">
-        <h1>Administrador de archivos <small><?php echo "aqui va el directorio" ?></small></h1>
+        <h1>Administrador de archivos <small><?php echo $_SESSION["directorio"] ?></small></h1>
       </div>
       <!-- Main Content -->
       <div id="content">
@@ -107,6 +113,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
 
