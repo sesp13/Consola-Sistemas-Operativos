@@ -42,22 +42,29 @@ $_SESSION["directorio"]=obtenerDirectorioActual();
       <!-- Main Content -->
       <div id="content">
 
-        <table class="table">
+        <table class="table table-sm">
           <thead>
             <tr>
               <th scope="col">Carpeta</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
+            <?php 
+
+            $carpetas = verContenidoDirectorio($_SESSION["directorio"],"");
+            foreach ($carpetas as $key) {
+              ?>
+              <tr>
+                <td>
+                  <button type="button" class="btn btn-link" onclick="alert('hola')">
+                  <?php echo $key;?>
+                  </button>
+                </td>
+              </tr>
+              <?php 
+            }
+            ?>
+
           </tbody>
         </table>
 
