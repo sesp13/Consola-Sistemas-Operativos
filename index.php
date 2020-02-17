@@ -4,8 +4,9 @@
 include 'php/funciones.php'; 
 session_start();
 /*session is started if you don't write this line can't use $_Session  global variable*/
-$_SESSION["directorio"]=obtenerDirectorioActual();
-
+if (!isset ($_SESSION['directorio']) ){
+  $_SESSION['directorio'] = "D:";
+}
 ?>
 <head>
 
@@ -49,20 +50,37 @@ $_SESSION["directorio"]=obtenerDirectorioActual();
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>
+                  <button type="button" class="btn btn-danger" id="return" >
+                    Volver
+                  </button>
+              </td>
+            </tr>
+            
             <?php 
 
             $carpetas = verContenidoDirectorio($_SESSION["directorio"],"");
             foreach ($carpetas as $key) {
+              if(strcmp($key,".") && strcmp($key,"..")){
               ?>
               <tr>
                 <td>
-                  <button type="button" class="btn btn-link" onclick="alert('hola')">
+                  <?php 
+                  if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) { ?>
+                  <button type="button" class="btn btn-link button-folder"><img src="img/dossier-147590_640.png" />
                   <?php echo $key;?>
                   </button>
+                <?php }else{ ?>
+                  <button type="button" class="btn btn-link"><img src="img/list-2389219_640.png" />
+                  <?php echo $key;?>
+                  </button>
+                <?php } ?>
                 </td>
               </tr>
               <?php 
             }
+          }
             ?>
 
           </tbody>
