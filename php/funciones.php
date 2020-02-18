@@ -39,11 +39,11 @@ function crearArchivo($ruta, $nombre)
   }
 }
 
-function crearDirectorio($ruta, $nombre, $permisos)
+function crearDirectorio($ruta, $nombre)
 {
   $rutaCompleta = $ruta . $nombre;
   if (!is_dir($rutaCompleta)) {
-    mkdir($rutaCompleta, $permisos);
+    mkdir($rutaCompleta);
     return 'Directorio creado';
   } else {
     return 'El directorio ya existe';
