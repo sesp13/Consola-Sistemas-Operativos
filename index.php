@@ -5,7 +5,7 @@ include 'php/funciones.php';
 session_start();
 /*session is started if you don't write this line can't use $_Session  global variable*/
 if (!isset ($_SESSION['directorio']) ){
-  $_SESSION['directorio'] = "/home";
+  $_SESSION['directorio'] = "/";
 }
 ?>
 <head>
@@ -41,6 +41,11 @@ if (!isset ($_SESSION['directorio']) ){
         <h1>Administrador de archivos <small><?php echo $_SESSION["directorio"] ?></small></h1>
       </div>
       <!-- Main Content -->
+      <div style="text-align: right;">
+      <button href=""data-toggle="modal" data-target="#modal-crear-carpeta" type="button" class="btn btn-primary">Crear carpeta</button>
+        
+        <button type="button" class="btn btn-primary" id="create-file">Crear archivo</button>
+      </div>
       <div id="content">
 
         <table class="table table-sm">
@@ -110,24 +115,30 @@ if (!isset ($_SESSION['directorio']) ){
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+  <!-- Modal-->
+  <div class="modal fade" id="modal-crear-carpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Nombre de la carpeta</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" class="form-control" id="name-dir">
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button class="btn btn-primary" id = "create-dir">Crear</button>
       </div>
     </div>
   </div>
+</div>
+<!-- end Modal-->
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

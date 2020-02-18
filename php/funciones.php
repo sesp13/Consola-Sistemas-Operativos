@@ -41,7 +41,7 @@ function crearArchivo($ruta, $nombre)
 
 function crearDirectorio($ruta, $nombre, $permisos)
 {
-  $rutaCompleta = $ruta . $nombre;
+  $rutaCompleta = substr($ruta . $nombre,1);
   if (!is_dir($rutaCompleta)) {
     mkdir($rutaCompleta, $permisos);
     return 'Directorio creado';

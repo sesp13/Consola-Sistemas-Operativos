@@ -5,7 +5,7 @@ $method = $_GET['method'];
 if(!strcmp($method,"modRuta")){
 	$id = $_POST['id'];
 	$_SESSION["directorio"] = $_SESSION["directorio"]."/".$id;
-	echo $id;
+	echo "1";
 }elseif (!strcmp($method,"return")) {
 	$dirAnt = obtenerPadre($_SESSION["directorio"],"");
 	if(strcmp($dirAnt,"El directorio no existe")){
@@ -14,5 +14,10 @@ if(!strcmp($method,"modRuta")){
 	}else{
 		echo $dirAnt;
 	}
+}elseif (!strcmp($method,"crearCarpeta")) {
+	$nombre = "/".$_POST['nombre'];
+	$ruta = $_SESSION["directorio"];
+	$metodo = crearDirectorio($ruta, $nombre, 0777);
+	echo $metodo;
 }
 ?>

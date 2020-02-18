@@ -11,7 +11,6 @@ $(document).ready(function() {
 				if(data == "1"){
 					location.reload();
 				}
-				location.reload();
 			}
 		});
 	});
@@ -28,7 +27,23 @@ $(document).ready(function() {
 			}
 		});
 	});
-
-
+	$('#create-dir').click(function(){
+		var nombre = document.getElementById("name-dir").value;
+		console.log(nombre);
+		$.ajax({
+			url: 'php/controlador.php?method=crearCarpeta',
+			type: 'POST',
+			data: { "nombre": nombre },
+			success: function (data) {
+				if(data == "Directorio creado"){
+					alert(data);
+					location.reload();
+				}else{
+					alert(data);
+				}
+				document.getElementById("name-dir").value = "";
+			}
+		});
+	});
 
 });
