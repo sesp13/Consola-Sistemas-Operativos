@@ -83,12 +83,12 @@ if (!isset ($_SESSION['directorio']) ){
                   <?php echo $key;?>
                   </button>
                 <?php } ?>
+                </td>                                                 
+                <td>
+                  <button data-toggle="modal" data-target="<?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "#modal-editar-nombre-carpeta";}else{echo "#modal-editar-nombre-archivo";} ?>" type="button" class="btn btn-info <?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "change-name-dir";}else{echo "change-name-file";} ?>" name ="<?php echo $key;?>" >cambiar nombre</button>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-info">cambiar nombre</button>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-danger">Eliminar</button>
+                  <button type="button" class="btn btn-danger" name ="<?php echo $key;?>">Eliminar</button>
                 </td>
               </tr>
 
@@ -98,7 +98,6 @@ if (!isset ($_SESSION['directorio']) ){
             ?>
           </tbody>
         </table>
-
       </div>
       <!-- End of Main Content -->
 
@@ -145,6 +144,8 @@ if (!isset ($_SESSION['directorio']) ){
     </div>
   </div>
 </div>
+
+
   <div class="modal fade" id="modal-crear-archivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -162,6 +163,28 @@ if (!isset ($_SESSION['directorio']) ){
       </div>
       <div class="modal-footer justify-content-center">
         <button class="btn btn-primary" id = "create-file">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-editar-nombre-carpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Nuevo nombre de la carpeta</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" class="form-control" id="new-name-dir">
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button class="btn btn-primary" id = "change-dir">Cambiar</button>
       </div>
     </div>
   </div>

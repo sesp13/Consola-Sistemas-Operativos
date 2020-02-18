@@ -9,7 +9,8 @@ $(document).ready(function () {
 			success: function (data) {
 				console.log(data);
 				if (data == "1") {
-					location.reload();
+					$("#page-top").load('index.php');
+					//location.reload();
 				}
 			}
 		});
@@ -20,7 +21,8 @@ $(document).ready(function () {
 			type: 'POST',
 			success: function (data) {
 				if (data == "1") {
-					location.reload();
+					$("#page-top").load('index.php');
+					//location.reload();
 				} else {
 					alert(data);
 				}
@@ -36,7 +38,8 @@ $(document).ready(function () {
 			data: { "nombre": nombre },
 			success: function (data) {
 				alert(data);
-				location.reload();
+				$("#page-top").load('index.php');
+				//location.reload();
 				document.getElementById("name-dir").value = "";
 			}
 		});
@@ -51,7 +54,8 @@ $(document).ready(function () {
 			success: function (data) {
 				if (data == "El archivo ha sido creado") {
 					alert(data);
-					location.reload();
+					$("#page-top").load('index.php');
+					//location.reload();
 				} else {
 					alert(data);
 				}
@@ -59,5 +63,20 @@ $(document).ready(function () {
 			}
 		});
 	});
-
+	$(".change-name-dir").click(function (e) {
+		e.preventDefault();
+		var carpeta = $(this).attr('name');
+		$.ajax({
+			url: 'php/controlador.php?method=cambiarNombreCarpeta',
+			type: 'POST',
+			data: { "carpeta": carpeta },
+			success: function (data) {
+				console.log(data);
+				if (data == "1") {
+					$("#page-top").load('index.php');
+					//location.reload();
+				}
+			}
+		});
+	});
 });

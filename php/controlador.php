@@ -24,5 +24,7 @@ if(!strcmp($method,"modRuta")){
 	$ruta = $_SESSION["directorio"];
 	$metodo = crearArchivo($ruta, $nombre);
 	echo $metodo;
+}elseif(!strcmp($method,"cambiarNombreCarpeta")){
+	
 }
 ?>

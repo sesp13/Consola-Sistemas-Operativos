@@ -1,7 +1,7 @@
 <?php
 //Nota para pajoy: Siempre que vaya a invocar un directorio poner / al final
 //Ejemplo si el directorio es carpeta, la ruta es ./carpeta/ 
-error_reporting(E_ERROR | E_PARSE);
+//error_reporting(E_ERROR | E_PARSE);
 //Obtener directorio actual
 function obtenerDirectorioActual()
 {
@@ -52,10 +52,11 @@ function crearArchivo($ruta, $nombre)
 //Los permisos se escriben como 0 777 o lo que desees
 function crearDirectorio($ruta, $nombre, $permisos)
 {
-  $rutaCompleta = $ruta . $nombre;
+  $rutaCompleta = $ruta . $nombre.'/';
   if (!is_dir($rutaCompleta)) {
     try {
       $a = mkdir($rutaCompleta, $permisos);
+      return $rutaCompleta;
       if(!strcmp($a,"1")){
         return 'Se creó la carpeta';
       }else{
