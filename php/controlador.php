@@ -15,9 +15,9 @@ if(!strcmp($method,"modRuta")){
 		echo $dirAnt;
 	}
 }elseif (!strcmp($method,"crearCarpeta")) {
-	$nombre = "/".$_POST['nombre'];
+	$nombre =$_POST['nombre'];
 	$ruta = $_SESSION["directorio"];
-	$metodo = crearDirectorio($ruta, $nombre."/");
+	$metodo = crearDirectorio(substr($ruta,1), '/'.$nombre, 0777);
 	echo $metodo;
 }elseif (!strcmp($method,"crearArchivo")) {
 	$nombre = "/".$_POST['nombre'];
