@@ -52,6 +52,8 @@ if (!isset ($_SESSION['directorio']) ){
           <thead>
             <tr>
               <th scope="col">Carpeta</th>
+              <th scope="col">cambiar nombre</th>
+              <th scope="col">Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -82,12 +84,18 @@ if (!isset ($_SESSION['directorio']) ){
                   </button>
                 <?php } ?>
                 </td>
+                <td>
+                  <button type="button" class="btn btn-info">cambiar nombre</button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger">Eliminar</button>
+                </td>
               </tr>
+
               <?php 
             }
           }
             ?>
-
           </tbody>
         </table>
 
