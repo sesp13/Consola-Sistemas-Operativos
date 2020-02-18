@@ -39,6 +39,7 @@ function crearArchivo($ruta, $nombre)
   }
 }
 
+//Los permisos se escriben como 0 777 o lo que desees
 function crearDirectorio($ruta, $nombre, $permisos)
 {
   $rutaCompleta = $ruta . $nombre;
