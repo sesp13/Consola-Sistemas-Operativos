@@ -39,11 +39,12 @@ function crearArchivo($ruta, $nombre)
   }
 }
 
-function crearDirectorio($ruta, $nombre)
+//Los permisos se escriben como 0 777 o lo que desees
+function crearDirectorio($ruta, $nombre, $permisos)
 {
   $rutaCompleta = $ruta . $nombre;
   if (!is_dir($rutaCompleta)) {
-    mkdir($rutaCompleta);
+    mkdir($rutaCompleta, $permisos);
     return 'Directorio creado';
   } else {
     return 'El directorio ya existe';
