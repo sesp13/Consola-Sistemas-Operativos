@@ -118,3 +118,57 @@ function renombrarDirectorio($ruta, $nombreViejo, $nombreNuevo)
     return 'El directorio que quieres renombrar no existe';
   }
 }
+
+//Obtener permisos de un archivo
+function verPermisosArchivo($ruta, $nombre)
+{
+  $rutaCompleta = $ruta . $nombre;
+
+  if (is_file($rutaCompleta)) {
+    clearstatcache();
+    return substr(sprintf("%o", fileperms($rutaCompleta)), -4);
+  } else {
+    return 'El archivo no existe';
+  }
+}
+
+//Obtiene el número del propietario.
+function verPropietario($ruta, $nombre)
+{
+  $rutaCompleta = $ruta . $nombre;
+
+  if (is_file($rutaCompleta)) {
+    return fileowner($rutaCompleta);
+  } else {
+    return 'El archivo no existe';
+  }
+}
+
+//Obtiene el número del grupo
+function verGrupo($ruta, $nombre)
+{
+  $rutaCompleta = $ruta . $nombre;
+
+  if (is_file($rutaCompleta)) {
+    return filegroup($rutaCompleta);
+  } else {
+    return 'El archivo no existe';
+  }
+}
+
+function moverArchivo($rutaVieja, $rutaNueva, $nombre)
+{
+  $rutaCompletaVieja = $rutaVieja . $nombre;
+  $rutaCompletaNueva = $rutaNueva . $nombre;
+
+  if (is_file($rutaCompletaVieja)) {
+    if (is_dir($rutaNueva)) {
+      rename($rutaCompletaVieja, $rutaCompletaNueva);
+      return 'Archivo movido';
+    } else {
+      return 'El directorio de destino no existe';
+    }
+  } else {
+    return 'El archivo que quieres mover no existe';
+  }
+}
