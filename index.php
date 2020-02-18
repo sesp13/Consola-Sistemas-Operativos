@@ -44,7 +44,7 @@ if (!isset ($_SESSION['directorio']) ){
       <div style="text-align: right;">
       <button href=""data-toggle="modal" data-target="#modal-crear-carpeta" type="button" class="btn btn-primary">Crear carpeta</button>
         
-        <button type="button" class="btn btn-primary" id="create-file">Crear archivo</button>
+      <button href=""data-toggle="modal" data-target="#modal-crear-archivo" type="button" class="btn btn-primary">Crear archivo</button>
       </div>
       <div id="content">
 
@@ -133,6 +133,27 @@ if (!isset ($_SESSION['directorio']) ){
       </div>
       <div class="modal-footer justify-content-center">
         <button class="btn btn-primary" id = "create-dir">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="modal-crear-archivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Nombre del archivo</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" class="form-control" id="name-file">
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button class="btn btn-primary" id = "create-file">Crear</button>
       </div>
     </div>
   </div>

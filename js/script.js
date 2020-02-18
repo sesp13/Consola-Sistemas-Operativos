@@ -45,5 +45,23 @@ $(document).ready(function() {
 			}
 		});
 	});
+	$('#create-file').click(function(){
+		var nombre = document.getElementById("name-file").value;
+		console.log(nombre);
+		$.ajax({
+			url: 'php/controlador.php?method=crearArchivo',
+			type: 'POST',
+			data: { "nombre": nombre },
+			success: function (data) {
+				if(data == "El archivo ha sido creado"){
+					alert(data);
+					location.reload();
+				}else{
+					alert(data);
+				}
+				document.getElementById("name-file").value = "";
+			}
+		});
+	});
 
 });

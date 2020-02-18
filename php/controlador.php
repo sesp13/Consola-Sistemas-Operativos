@@ -19,5 +19,10 @@ if(!strcmp($method,"modRuta")){
 	$ruta = $_SESSION["directorio"];
 	$metodo = crearDirectorio($ruta, $nombre, 0777);
 	echo $metodo;
+}elseif (!strcmp($method,"crearArchivo")) {
+	$nombre = "/".$_POST['nombre'];
+	$ruta = $_SESSION["directorio"];
+	$metodo = crearArchivo($ruta, $nombre);
+	echo $metodo;
 }
 ?>
