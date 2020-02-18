@@ -1,7 +1,7 @@
 <?php
 //Nota para pajoy: Siempre que vaya a invocar un directorio poner / al final
 //Ejemplo si el directorio es carpeta, la ruta es ./carpeta/ 
-
+error_reporting(E_ERROR | E_PARSE);
 //Obtener directorio actual
 function obtenerDirectorioActual()
 {
@@ -27,13 +27,23 @@ function verContenidoDirectorio($ruta, $nombre)
 }
 
 //Creación de archivos y directorios
+
+
 function crearArchivo($ruta, $nombre)
 {
   $rutaCompleta = $ruta . $nombre;
   if (!is_file($rutaCompleta)) {
-    $archivo = fopen($rutaCompleta, 'a');
-    return 'El archivo ha sido creado';
-    fclose($archivo);
+    try {
+      $archivo = fopen($rutaCompleta, 'a');
+      fclose($archivo);
+      if(!strcmp($archivo,"1")){
+        return 'El archivo ha sido creado';
+      }else{
+        return 'ocurrio un error, revisa los permisos';
+      }
+    } catch (Exception $th) {
+      return "Error";
+    }
   } else {
     return 'El archivo ya existe';
   }
@@ -44,10 +54,18 @@ function crearDirectorio($ruta, $nombre, $permisos)
 {
   $rutaCompleta = $ruta . $nombre;
   if (!is_dir($rutaCompleta)) {
-    $a = mkdir($rutaCompleta, $permisos);
-    return $a;
+    try {
+      $a = mkdir($rutaCompleta, $permisos);
+      if(!strcmp($a,"1")){
+        return 'Se creó la carpeta';
+      }else{
+        return 'ocurrio un error, revisa los permisos';
+      }
+    } catch (Exception $th) {
+      return "Error";
+    }
   } else {
-    return $a;
+    return 'El directorio ya existe';
   }
 }
 

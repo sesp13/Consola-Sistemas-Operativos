@@ -5,7 +5,7 @@ include 'php/funciones.php';
 session_start();
 /*session is started if you don't write this line can't use $_Session  global variable*/
 if (!isset ($_SESSION['directorio']) ){
-  $_SESSION['directorio'] = "/";
+  $_SESSION['directorio'] = "/opt/lampp/htdocs/Consola-Sistemas-Operativos/carpetaDePrueba";
 }
 ?>
 <head>
