@@ -234,3 +234,21 @@ function verInformacionDePermisos($ruta,$nombre){
     return 'El fichero no existe';
   }
 }
+
+//Mover archivos o directorios, funciona para ambos
+function moverFichero($rutaVieja, $rutaNueva, $nombre)
+{
+  $rutaCompletaVieja = $rutaVieja . $nombre;
+  $rutaCompletaNueva = $rutaNueva . $nombre;
+
+  if (is_file($rutaCompletaVieja) || is_dir($rutaCompletaVieja)) {
+    if (is_dir($rutaNueva)) {
+      rename($rutaCompletaVieja, $rutaCompletaNueva);
+      return 'Fichero movido';
+    } else {
+      return 'El directorio de destino no existe';
+    }
+  } else {
+    return 'El fichero que quieres mover no existe';
+  }
+}
