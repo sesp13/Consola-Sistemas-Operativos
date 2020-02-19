@@ -89,23 +89,6 @@ $(document).ready(function () {
 					}
 				});
 			});
-
-
-
-
-
-
-		$.ajax({
-			url: 'php/controlador.php?method=cambiarNombreCarpeta',
-			type: 'POST',
-			data: { "carpeta": carpeta },
-			success: function (data) {
-				if (data == "1") {
-					$("#page-top").load('index.php');
-					//location.reload();
-				}
-			}
-		});
 	});
 	$(".delete-dir").click(function (e) {
 		e.preventDefault();

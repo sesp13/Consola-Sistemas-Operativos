@@ -141,8 +141,12 @@ function renombrarArchivo($ruta, $nombreViejo, $nombreNuevo)
   $rutaNueva = $ruta . $nombreNuevo;
 
   if (is_file($rutaCompleta)) {
-    rename($rutaCompleta, $rutaNueva);
-    return 'El archivo ha sido renombrado';
+    if(!is_dir($rutaNueva) && !is_file($rutaNueva)){
+      rename($rutaCompleta, $rutaNueva);
+      return 'El archivo ha sido renombrado';
+    }else{
+      return 'Ya existe un elemento con el nombre que intentas poner';
+    }
   } else {
     return 'El archivo que quieres renombrar no existe';
   }
@@ -154,8 +158,12 @@ function renombrarDirectorio($ruta, $nombreViejo, $nombreNuevo)
   $rutaNueva = $ruta . $nombreNuevo;
 
   if (is_dir($rutaCompleta)) {
-    rename($rutaCompleta, $rutaNueva);
-    return 'El directorio ha sido renombrado';
+    if(!is_dir($rutaNueva) && !is_file($rutaNueva)){
+      rename($rutaCompleta, $rutaNueva);
+      return 'El directorio ha sido renombrado';
+    }else{
+      return 'Ya existe un elemento con el nombre que intentas poner';
+    }
   } else {
     return 'El directorio que quieres renombrar no existe';
   }

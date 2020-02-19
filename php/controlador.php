@@ -28,12 +28,7 @@ if(!strcmp($method,"modRuta")){
 	$nombreViejo = $_POST['nombreViejo'];
 	$nombreNuevo = $_POST['nombreNuevo'];
 	$ruta = $_SESSION["directorio"];
-	if(!is_dir($nombreNuevo) && !is_file($nombreNuevo)){
-		$metodo = renombrarDirectorio($ruta.'/', $nombreViejo, $nombreNuevo);
-	}else{
-		$metodo = 'Ya existe un archivo con el nombre que intentas poner';
-	}
-	
+	$metodo = renombrarDirectorio($ruta.'/', $nombreViejo, $nombreNuevo);
 	echo $metodo;
 	
 }elseif (!strcmp($method,"eliminarCarpeta")) {
