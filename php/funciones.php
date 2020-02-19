@@ -214,15 +214,3 @@ function moverArchivo($rutaVieja, $rutaNueva, $nombre)
     return 'El archivo que quieres mover no existe';
   }
 }
-
-//Obtiene los permisos de un archivo o directorio
-function verInformacionDePermisos($ruta,$nombre){
-  $rutaCompleta = $ruta.$nombre;
-  if(is_file($rutaCompleta) || is_dir($rutaCompleta)){
-    clearstatcache();
-    return substr(sprintf("%o", fileperms($rutaCompleta)), -4); 
-  }
-  else{
-    return 'El fichero no existe';
-  }
-}
