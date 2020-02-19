@@ -116,6 +116,7 @@ function eliminarDirectorio($ruta, $nombre)
 }
 
 //Copiar y pegar archivos
+//NOTA ESTA FUNCIÓN NO HA SIDO PROBADA EN LINUX AÚN
 //Nota si el archivo en la ruta nueva ya existe, es sobreescrito
 function copiarPegarArchivo($rutaVieja, $rutaNueva, $nombre)
 {
@@ -206,20 +207,21 @@ function verGrupo($ruta, $nombre)
   }
 }
 
-function moverArchivo($rutaVieja, $rutaNueva, $nombre)
+//Mover archivos o directorios, funciona para ambos
+function moverFichero($rutaVieja, $rutaNueva, $nombre)
 {
   $rutaCompletaVieja = $rutaVieja . $nombre;
   $rutaCompletaNueva = $rutaNueva . $nombre;
 
-  if (is_file($rutaCompletaVieja)) {
+  if (is_file($rutaCompletaVieja) || is_dir($rutaCompletaVieja)) {
     if (is_dir($rutaNueva)) {
       rename($rutaCompletaVieja, $rutaCompletaNueva);
-      return 'Archivo movido';
+      return 'Fichero movido';
     } else {
       return 'El directorio de destino no existe';
     }
   } else {
-    return 'El archivo que quieres mover no existe';
+    return 'El fichero que quieres mover no existe';
   }
 }
 
@@ -234,3 +236,4 @@ function verInformacionDePermisos($ruta,$nombre){
     return 'El fichero no existe';
   }
 }
+
