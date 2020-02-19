@@ -135,6 +135,22 @@ function copiarPegarArchivo($rutaVieja, $rutaNueva, $nombre)
   }
 }
 
+//Copia y pega un directorio, ojo con los permisos
+function copiarPegarDirectorio($rutaVieja,$rutaNueva,$nombre){
+  $rutaCompletaVieja = $rutaVieja.$nombre;
+  $rutaCompletaNueva = $rutaNueva.$nombre;
+  if(is_dir($rutaCompletaVieja)){
+    if(is_dir($rutaNueva)){
+      exec("cp -R $rutaCompletaVieja $rutaCompletaNueva");
+      return 'Directorio copiado';
+    }else{
+      return 'El directorio de destino no existe';
+    }
+  }else{
+    return 'EL directorio que quieres copiar no existe';
+  }
+}
+
 //Renombrar archivos y directorios
 function renombrarArchivo($ruta, $nombreViejo, $nombreNuevo)
 {
