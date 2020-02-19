@@ -43,6 +43,8 @@ if (!isset ($_SESSION['directorio']) ){
       </div>
       <!-- Main Content -->
       <div style="text-align: right;">
+      <button type="button" class="btn btn-dark" id = "paste">pegar</button>
+
       <button type="button" class="btn btn-primary" id = "create-dir">Crear carpeta</button>
         
       <button type="button" class="btn btn-primary" id = "create-file">Crear archivo</button>
@@ -50,13 +52,7 @@ if (!isset ($_SESSION['directorio']) ){
       <div id="content">
 
         <table class="table table-sm">
-          <thead>
-            <tr>
-              <th scope="col">Carpeta</th>
-              <th scope="col">cambiar nombre</th>
-              <th scope="col">Eliminar</th>
-            </tr>
-          </thead>
+
           <tbody>
             <tr>
               <td>
@@ -85,12 +81,24 @@ if (!isset ($_SESSION['directorio']) ){
                   </button>
                 <?php } ?>
                 </td>                                                 
-                <td>
+                <td style="text-align: right;">
                   <button type="button" class="btn btn-info <?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "change-name-dir";}else{echo "change-name-file";} ?>" name ="<?php echo $key;?>" >cambiar nombre</button>
-                </td>
-                <td>
+               
                   <button type="button" class="btn btn-danger <?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "delete-dir";}else{echo "delete-file";} ?>" name ="<?php echo $key;?>">Eliminar</button>
-                </td>
+              
+                  <button type="button" class="btn btn-warning <?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "copy-dir";}else{echo "copy-file";} ?>" name ="<?php echo $key;?>">Copiar</button>
+                
+              
+                  <button type="button" class="btn btn-light cut" name ="<?php echo $key;?>">Cortar</button>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Permisos
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item view-info" name ="<?php echo $key;?>">Ver info</a>
+                    </div>
+                  </div>
+                
               </tr>
 
               <?php 

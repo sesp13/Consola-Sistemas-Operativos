@@ -47,5 +47,33 @@ if(!strcmp($method,"modRuta")){
 	$ruta = $_SESSION["directorio"];
 	$metodo = renombrarArchivo($ruta.'/', $nombreViejo, $nombreNuevo);
 	echo $metodo;
+}elseif (!strcmp($method,"copiarArchivo")) {
+	$ruta = $_SESSION["directorio"];
+	$nombre = "/".$_POST['archivo'];
+	$_SESSION["rutaCopiada"] = $ruta;
+	$_SESSION["nombreElentoCopiado"] = $nombre;
+	$_SESSION["CP"] = 'copiarArchivo';
+	echo $_SESSION["rutaCopiada"].$_SESSION["nombreElentoCopiado"];
+}elseif (!strcmp($method,"pegar")) {
+	$rutaNueva = $_SESSION["directorio"];
+	$rutaVieja = $_SESSION["rutaCopiada"];
+	$archivo = $_SESSION["nombreElentoCopiado"];
+	$accion = $_SESSION["CP"];
+	if(!strcmp($accion,"copiarArchivo")){
+		$metodo = copiarPegarArchivo($rutaVieja, $rutaNueva, $archivo);
+	}elseif (!strcmp($accion,"cortar")) {
+		$metodo = moverFichero($rutaVieja, $rutaNueva, $archivo);
+	}
+	$_SESSION["rutaCopiada"] = "";
+	$_SESSION["nombreElentoCopiado"] = "";
+	$_SESSION["CP"] = "";
+	echo $metodo;
+}elseif (!strcmp($method,"cortar")) {
+	$ruta = $_SESSION["directorio"];
+	$nombre = "/".$_POST['archivo'];
+	$_SESSION["rutaCopiada"] = $ruta;
+	$_SESSION["nombreElentoCopiado"] = $nombre;
+	$_SESSION["CP"] = 'cortar';
+	echo $_SESSION["rutaCopiada"].$_SESSION["nombreElentoCopiado"];
 }
 ?>

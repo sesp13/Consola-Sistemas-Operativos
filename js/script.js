@@ -153,4 +153,55 @@ $(document).ready(function () {
 			}
 		});
 	});
+	$(".copy-file").click(function (e) {
+		e.preventDefault();
+		var archivo = $(this).attr('name');
+		console.log(archivo);
+		$.ajax({
+			url: 'php/controlador.php?method=copiarArchivo',
+			type: 'POST',
+			data: { "archivo": archivo },
+			success: function (data) {
+				console.log(data);
+			}
+		});
+	});
+	$("#paste").click(function (e) {
+		$.ajax({
+			url: 'php/controlador.php?method=pegar',
+			type: 'POST',
+			data: {},
+			success: function (data) {
+				swal(data).then((value) => {
+					$("#page-top").load('index.php');
+				});
+			}
+		});
+	});
+	$(".cut").click(function (e) {
+		e.preventDefault();
+		var archivo = $(this).attr('name');
+		console.log(archivo);
+		$.ajax({
+			url: 'php/controlador.php?method=cortar',
+			type: 'POST',
+			data: { "archivo": archivo },
+			success: function (data) {
+				console.log(data);
+			}
+		});
+	});
+	$(".view-info").click(function (e) {
+		e.preventDefault();
+		var elemento = $(this).attr('name');
+		console.log(elemento);
+		$.ajax({
+			url: 'php/controlador.php?method=',
+			type: 'POST',
+			data: { "elemento": elemento },
+			success: function (data) {
+				console.log(data);
+			}
+		});
+	});
 });
