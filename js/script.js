@@ -90,6 +90,30 @@ $(document).ready(function () {
 				});
 			});
 	});
+	$(".change-name-file").click(function (e) {
+		e.preventDefault();
+		var archivo = $(this).attr('name');
+		console.log(archivo);
+
+		swal("Nuevo nombre del archivo", {
+			content: "input",
+		})
+			.then((value) => {
+				$.ajax({
+					url: 'php/controlador.php?method=cambiarNombreArchivo',
+					type: 'POST',
+					data: {
+						"nombreViejo": archivo,
+						"nombreNuevo": value
+					},
+					success: function (data) {
+						swal(data).then((value) => {
+							$("#page-top").load('index.php');
+						});
+					}
+				});
+			});
+	});
 	$(".delete-dir").click(function (e) {
 		e.preventDefault();
 		var carpeta = $(this).attr('name');

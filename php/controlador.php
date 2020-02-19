@@ -41,5 +41,11 @@ if(!strcmp($method,"modRuta")){
 	$ruta = $_SESSION["directorio"];
 	$metodo = eliminarArchivo($ruta, $nombre);
 	echo $metodo;
+}elseif (!strcmp($method,"cambiarNombreArchivo")) {
+	$nombreViejo = $_POST['nombreViejo'];
+	$nombreNuevo = $_POST['nombreNuevo'];
+	$ruta = $_SESSION["directorio"];
+	$metodo = renombrarArchivo($ruta.'/', $nombreViejo, $nombreNuevo);
+	echo $metodo;
 }
 ?>

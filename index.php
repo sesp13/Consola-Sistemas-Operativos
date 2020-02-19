@@ -86,7 +86,7 @@ if (!isset ($_SESSION['directorio']) ){
                 <?php } ?>
                 </td>                                                 
                 <td>
-                  <button data-toggle="modal" data-target="<?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "#modal-editar-nombre-carpeta";}else{echo "#modal-editar-nombre-archivo";} ?>" type="button" class="btn btn-info <?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "change-name-dir";}else{echo "change-name-file";} ?>" name ="<?php echo $key;?>" >cambiar nombre</button>
+                  <button type="button" class="btn btn-info <?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "change-name-dir";}else{echo "change-name-file";} ?>" name ="<?php echo $key;?>" >cambiar nombre</button>
                 </td>
                 <td>
                   <button type="button" class="btn btn-danger <?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "delete-dir";}else{echo "delete-file";} ?>" name ="<?php echo $key;?>">Eliminar</button>
