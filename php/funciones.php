@@ -86,10 +86,33 @@ function eliminarDirectorio($ruta, $nombre)
 {
   $rutaCompleta = $ruta . $nombre;
   if (is_dir($rutaCompleta)) {
+    $array = verContenidoDirectorio($ruta, $nombre);
+    foreach ($array as $x) {
+      if($x!='.' &&  $x!='..'){
+        if(is_dir($rutaCompleta.$x)){
+          $arrayInterno = verContenidoDirectorio($rutaCompleta,$x);
+          $bool = false;
+          foreach($arrayInterno as $y){
+            if($y!='.' && $y!='..'){
+              $bool = true;
+            }
+          }
+          if($bool){
+            eliminarDirectorio($rutaCompleta,$x.'/');
+          }
+          else{
+            rmdir($rutaCompleta.$x);
+          }
+        }
+        else if (is_file($rutaCompleta.$x)){
+          unlink($rutaCompleta.$x);
+        }
+      }
+    }
     rmdir($rutaCompleta);
-    return 'El directorio ha sido eliminado';
+    return true;
   } else {
-    return 'El directorio no existe';
+    return false;
   }
 }
 
