@@ -25,57 +25,102 @@ $(document).ready(function () {
 					//location.reload();
 				} else {
 					alert(data);
+					$("#page-top").load('index.php');
 				}
 			}
 		});
 	});
 	$('#create-dir').click(function () {
-		var nombre = document.getElementById("name-dir").value;
-		console.log(nombre);
-		$.ajax({
-			url: 'php/controlador.php?method=crearCarpeta',
-			type: 'POST',
-			data: { "nombre": nombre },
-			success: function (data) {
-				alert(data);
-				$("#page-top").load('index.php');
-				//location.reload();
-				document.getElementById("name-dir").value = "";
-			}
-		});
+		swal("Nombre de la carpeta:", {
+			content: "input",
+		})
+			.then((value) => {
+				$.ajax({
+					url: 'php/controlador.php?method=crearCarpeta',
+					type: 'POST',
+					data: { "nombre": value },
+					success: function (data) {
+						swal(data).then((value) => {
+							$("#page-top").load('index.php');
+						});
+					}
+				});
+			});
+
 	});
 	$('#create-file').click(function () {
-		var nombre = document.getElementById("name-file").value;
-		console.log(nombre);
-		$.ajax({
-			url: 'php/controlador.php?method=crearArchivo',
-			type: 'POST',
-			data: { "nombre": nombre },
-			success: function (data) {
-				if (data == "El archivo ha sido creado") {
-					alert(data);
-					$("#page-top").load('index.php');
-					//location.reload();
-				} else {
-					alert(data);
-				}
-				document.getElementById("name-file").value = "";
-			}
-		});
+		swal("Nombre del archivo:", {
+			content: "input",
+		})
+			.then((value) => {
+				$.ajax({
+					url: 'php/controlador.php?method=crearArchivo',
+					type: 'POST',
+					data: { "nombre": value },
+					success: function (data) {
+						swal(data).then((value) => {
+							$("#page-top").load('index.php');
+						});
+					}
+				});
+			});
 	});
+
 	$(".change-name-dir").click(function (e) {
 		e.preventDefault();
 		var carpeta = $(this).attr('name');
+		console.log(carpeta);
+
+		swal("Nuevo nombre de la carpeta:", {
+			content: "input",
+		})
+			.then((value) => {
+				$.ajax({
+					url: 'php/controlador.php?method=cambiarNombreCarpeta',
+					type: 'POST',
+					data: {
+						"nombreViejo": carpeta,
+						"nombreNuevo": value
+					},
+					success: function (data) {
+						swal(data).then((value) => {
+							$("#page-top").load('index.php');
+						});
+					}
+				});
+			});
+
+
+
+
+
+
 		$.ajax({
 			url: 'php/controlador.php?method=cambiarNombreCarpeta',
 			type: 'POST',
 			data: { "carpeta": carpeta },
 			success: function (data) {
-				console.log(data);
 				if (data == "1") {
 					$("#page-top").load('index.php');
 					//location.reload();
 				}
+			}
+		});
+	});
+	$(".delete-dir").click(function (e) {
+		e.preventDefault();
+		var carpeta = $(this).attr('name');
+		console.log(carpeta);
+		$.ajax({
+			url: 'php/controlador.php?method=eliminarCarpeta',
+			type: 'POST',
+			data: { "carpeta": carpeta },
+			success: function (data) {
+				swal(data).then((value) => {
+					$("#page-top").load('index.php');
+				});
+
+
 			}
 		});
 	});

@@ -25,6 +25,16 @@ if(!strcmp($method,"modRuta")){
 	$metodo = crearArchivo($ruta, $nombre);
 	echo $metodo;
 }elseif(!strcmp($method,"cambiarNombreCarpeta")){
+	$nombreViejo = $_POST['nombreViejo'];
+	$nombreNuevo = $_POST['nombreNuevo'];
+	$ruta = $_SESSION["directorio"];
+	$metodo = renombrarDirectorio(".".$ruta.'/', $nombreViejo, $nombreNuevo);
+	echo $metodo;
 	
+}elseif (!strcmp($method,"eliminarCarpeta")) {
+	$nombre = "/".$_POST['carpeta'];
+	$ruta = $_SESSION["directorio"];
+	$metodo = eliminarDirectorio($ruta, $nombre);
+	echo $metodo;
 }
 ?>

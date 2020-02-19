@@ -5,7 +5,7 @@ include 'php/funciones.php';
 session_start();
 /*session is started if you don't write this line can't use $_Session  global variable*/
 if (!isset ($_SESSION['directorio']) ){
-  $_SESSION['directorio'] = "/opt/lampp/htdocs/Consola-Sistemas-Operativos/carpetaDePrueba";
+  $_SESSION['directorio'] = obtenerDirectorioActual()."/carpetaDePrueba";
 }
 ?>
 <head>
@@ -21,6 +21,7 @@ if (!isset ($_SESSION['directorio']) ){
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="vendor/SweetAlert/dist/sweetalert2.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -42,9 +43,9 @@ if (!isset ($_SESSION['directorio']) ){
       </div>
       <!-- Main Content -->
       <div style="text-align: right;">
-      <button href=""data-toggle="modal" data-target="#modal-crear-carpeta" type="button" class="btn btn-primary">Crear carpeta</button>
+      <button type="button" class="btn btn-primary" id = "create-dir">Crear carpeta</button>
         
-      <button href=""data-toggle="modal" data-target="#modal-crear-archivo" type="button" class="btn btn-primary">Crear archivo</button>
+      <button type="button" class="btn btn-primary" id = "create-file">Crear archivo</button>
       </div>
       <div id="content">
 
@@ -88,7 +89,7 @@ if (!isset ($_SESSION['directorio']) ){
                   <button data-toggle="modal" data-target="<?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "#modal-editar-nombre-carpeta";}else{echo "#modal-editar-nombre-archivo";} ?>" type="button" class="btn btn-info <?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "change-name-dir";}else{echo "change-name-file";} ?>" name ="<?php echo $key;?>" >cambiar nombre</button>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-danger" name ="<?php echo $key;?>">Eliminar</button>
+                  <button type="button" class="btn btn-danger <?php if (!strcmp((string)filetype($_SESSION["directorio"]."/".$key),"dir")) {echo "delete-dir";}else{echo "delete-file";} ?>" name ="<?php echo $key;?>">Eliminar</button>
                 </td>
               </tr>
 
@@ -123,81 +124,17 @@ if (!isset ($_SESSION['directorio']) ){
   </a>
 
   <!-- Modal-->
-  <div class="modal fade" id="modal-crear-carpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Nombre de la carpeta</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" class="form-control" id="name-dir">
-        </div>
-      </div>
-      <div class="modal-footer justify-content-center">
-        <button class="btn btn-primary" id = "create-dir">Crear</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  <div class="modal fade" id="modal-crear-archivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Nombre del archivo</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" class="form-control" id="name-file">
-        </div>
-      </div>
-      <div class="modal-footer justify-content-center">
-        <button class="btn btn-primary" id = "create-file">Crear</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="modal-editar-nombre-carpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Nuevo nombre de la carpeta</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" class="form-control" id="new-name-dir">
-        </div>
-      </div>
-      <div class="modal-footer justify-content-center">
-        <button class="btn btn-primary" id = "change-dir">Cambiar</button>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- end Modal-->
 
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/SweetAlert/dist/sweetalert2.all.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/SweetAlert/sweetalert.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
