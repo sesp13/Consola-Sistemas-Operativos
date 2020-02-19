@@ -116,9 +116,16 @@ $(document).ready(function () {
 			type: 'POST',
 			data: { "carpeta": carpeta },
 			success: function (data) {
-				swal(data).then((value) => {
-					$("#page-top").load('index.php');
-				});
+				if (data == "1") {
+					swal("Se elimino el directorio").then((value) => {
+						$("#page-top").load('index.php');
+					});
+				}else{
+					swal("Error").then((value) => {
+						$("#page-top").load('index.php');
+					});
+				}
+
 
 
 			}
