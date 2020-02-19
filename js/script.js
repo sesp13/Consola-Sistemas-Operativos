@@ -103,7 +103,7 @@ $(document).ready(function () {
 					swal("Se elimino el directorio").then((value) => {
 						$("#page-top").load('index.php');
 					});
-				}else{
+				} else {
 					swal("Error").then((value) => {
 						$("#page-top").load('index.php');
 					});
@@ -111,6 +111,21 @@ $(document).ready(function () {
 
 
 
+			}
+		});
+	});
+	$(".delete-file").click(function (e) {
+		e.preventDefault();
+		var archivo = $(this).attr('name');
+		console.log(archivo);
+		$.ajax({
+			url: 'php/controlador.php?method=eliminarArchivo',
+			type: 'POST',
+			data: { "archivo": archivo },
+			success: function (data) {
+				swal("Se elimino el archivo").then((value) => {
+					$("#page-top").load('index.php');
+				});
 			}
 		});
 	});

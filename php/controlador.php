@@ -36,5 +36,10 @@ if(!strcmp($method,"modRuta")){
 	$ruta = $_SESSION["directorio"];
 	$metodo = eliminarDirectorio($ruta, $nombre);
 	echo $metodo;
+}elseif (!strcmp($method,"eliminarArchivo")) {
+	$nombre = "/".$_POST['archivo'];
+	$ruta = $_SESSION["directorio"];
+	$metodo = eliminarArchivo($ruta, $nombre);
+	echo $metodo;
 }
 ?>

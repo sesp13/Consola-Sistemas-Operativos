@@ -1,7 +1,7 @@
 <?php
 //Nota para pajoy: Siempre que vaya a invocar un directorio poner / al final
 //Ejemplo si el directorio es carpeta, la ruta es ./carpeta/ 
-//error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
 //Obtener directorio actual
 function obtenerDirectorioActual()
 {
@@ -39,7 +39,7 @@ function crearArchivo($ruta, $nombre)
       if(!strcmp($archivo,"1")){
         return 'El archivo ha sido creado';
       }else{
-        return 'ocurrio un error, revisa los permisos';
+        return 'ocurrio un error';
       }
     } catch (Exception $th) {
       return "Error";
@@ -59,7 +59,7 @@ function crearDirectorio($ruta, $nombre, $permisos)
       if(!strcmp($a,"1")){
         return 'Se creó la carpeta';
       }else{
-        return 'ocurrio un error, revisa los permisos';
+        return 'ocurrio un error';
       }
     } catch (Exception $th) {
       return "Error";
