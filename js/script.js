@@ -196,11 +196,13 @@ $(document).ready(function () {
 		var elemento = $(this).attr('name');
 		console.log(elemento);
 		$.ajax({
-			url: 'php/controlador.php?method=',
+			url: 'php/controlador.php?method=verInfoPermisos',
 			type: 'POST',
 			data: { "elemento": elemento },
 			success: function (data) {
-				console.log(data);
+				swal(data).then((value) => {
+					$("#page-top").load('index.php');
+				});
 			}
 		});
 	});
