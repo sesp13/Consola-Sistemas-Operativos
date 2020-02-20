@@ -82,7 +82,7 @@ if(!strcmp($method,"modRuta")){
 }elseif (!strcmp($method,"verInfoPermisos")) {
 	$ruta = $_SESSION["directorio"];
 	$nombre = "/".$_POST['elemento'];
-	$_SESSION["rutaCambiarPermisos"] = $ruta.$nombre;
+	$_SESSION["rutaCambiarPermisos"] = $ruta;
 	$_SESSION["nombreCambiarPermisos"] = $nombre;
 	$metodo = verInformacionDePermisos($ruta, $nombre);
 	echo $metodo;
