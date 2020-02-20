@@ -232,3 +232,15 @@ function verInformacionDePermisos($ruta,$nombre){
   }
 }
 
+//Ver propietario de archivo
+function verPropietarioPrueba($ruta, $nombre)
+{
+  $rutaCompleta = $ruta . $nombre;
+
+  if(is_file($rutaCompleta)){
+    $a  = posix_getpwuid(fileowner($rutaCompleta));
+    return array_shift($a);
+  } else {
+    return 'El archivo no existe';
+  }
+}
