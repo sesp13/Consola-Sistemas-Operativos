@@ -178,25 +178,27 @@ function verPermisosArchivo($ruta, $nombre)
   }
 }
 
-//Obtiene el número del propietario.
-function verPropietario($ruta, $nombre)
+//Ver propietario del archivo
+function verPropietarioArchivo($ruta, $nombre)
 {
   $rutaCompleta = $ruta . $nombre;
 
-  if (is_file($rutaCompleta)) {
-    return fileowner($rutaCompleta);
+  if(is_file($rutaCompleta)){
+    $a  = posix_getpwuid(fileowner($rutaCompleta));
+    return array_shift($a);
   } else {
     return 'El archivo no existe';
   }
 }
 
-//Obtiene el número del grupo
-function verGrupo($ruta, $nombre)
+//Ver dueño del archivo
+function verGrupoArchivo($ruta, $nombre)
 {
   $rutaCompleta = $ruta . $nombre;
 
-  if (is_file($rutaCompleta)) {
-    return filegroup($rutaCompleta);
+  if(is_file($rutaCompleta)){
+    $a  = posix_getgrgid(filegroup($rutaCompleta));
+    return array_shift($a);
   } else {
     return 'El archivo no existe';
   }
@@ -229,18 +231,5 @@ function verInformacionDePermisos($ruta,$nombre){
   }
   else{
     return 'El fichero no existe';
-  }
-}
-
-//Ver propietario de archivo
-function verPropietarioPrueba($ruta, $nombre)
-{
-  $rutaCompleta = $ruta . $nombre;
-
-  if(is_file($rutaCompleta)){
-    $a  = posix_getpwuid(fileowner($rutaCompleta));
-    return array_shift($a);
-  } else {
-    return 'El archivo no existe';
   }
 }
