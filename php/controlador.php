@@ -106,6 +106,7 @@ if(!strcmp($method,"modRuta")){
 	$nombre = "/".$_POST['elemento'];
 	$usuario = $_POST['usuario'];
 	$metodo = cambiarPropietario($ruta, $nombre, $usuario);
-	echo $metodo;
+	$usuarioFinal = verPropietarioFichero($ruta, $nombre);
+	echo $usuarioFinal;
 }
 ?>
