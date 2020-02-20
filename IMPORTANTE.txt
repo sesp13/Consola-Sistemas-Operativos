@@ -1,0 +1,8 @@
+INSTRUCCIONES:
+El programa fue probado con los servidores locales de xampp y por lo tanto debe ser corrido ahi(pegar en la carpeta htdocs).
+Para el correcto funcionamiento, antes de ejecutar se debe dar permisos a la carpeta que contiene el programa
+y tambien se debe configurar linux para que no pida contraseña de super usuario.
+
+REALIZADO POR:
+Juan Manuel Pajoy Lopez
+Santiago Espinosa Arteaga
