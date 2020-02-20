@@ -9,8 +9,8 @@ $(document).ready(function () {
 			success: function (data) {
 				console.log(data);
 				if (data == "1") {
-					$("#page-top").load('index.php');
-					//location.reload();
+					//$("#page-top").load('index.php');
+					location.reload();
 				}
 			}
 		});
@@ -21,11 +21,12 @@ $(document).ready(function () {
 			type: 'POST',
 			success: function (data) {
 				if (data == "1") {
-					$("#page-top").load('index.php');
-					//location.reload();
+					//$("#page-top").load('index.php');
+					location.reload();
 				} else {
 					alert(data);
-					$("#page-top").load('index.php');
+					//$("#page-top").load('index.php');
+					location.reload();
 				}
 			}
 		});
@@ -208,6 +209,53 @@ $(document).ready(function () {
 			data: { "elemento": elemento },
 			success: function (data) {
 				swal(data);
+			}
+		});
+	});
+	$(".mod-per").click(function (e) {
+		e.preventDefault();
+		var elemento = $(this).attr('name');
+		console.log(elemento);
+		$.ajax({
+			url: 'php/controlador.php?method=verInfoPermisos',
+			type: 'POST',
+			data: { "elemento": elemento },
+			success: function (data) {
+				var permisos = data.substring(1,4);
+				var lista = permisos.split("");
+				var lista2 = ["P","G","O"];
+				var lista3 = ['read', 'write', 'exec'];
+				for (var i = 0; i < lista.length; i++) {
+					var aux = (parseInt(lista[i]).toString(2)).split("");
+					for (var j = 0; j< aux.length; j++){
+						if (i==0) {
+							if (aux[j]=="1") {
+								var x = document.getElementById(lista3[j]+lista2[i]);
+								x.checked = true;
+							}else{
+								var x = document.getElementById(lista3[j]+lista2[i]);
+								x.checked = false;
+							}
+						}else if(i==1){
+							if (aux[j]=="1") {
+								var x = document.getElementById(lista3[j]+lista2[i]);
+								x.checked = true;
+							}else{
+								var x = document.getElementById(lista3[j]+lista2[i]);
+								x.checked = false;
+							}
+						}else{
+							if (aux[j]=="1") {
+								var x = document.getElementById(lista3[j]+lista2[i]);
+								x.checked = true;
+							}else{
+								var x = document.getElementById(lista3[j]+lista2[i]);
+								x.checked = false;
+							}
+						}
+					}
+				 }
+
 			}
 		});
 	});

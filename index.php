@@ -96,7 +96,8 @@ if (!isset ($_SESSION['directorio']) ){
                       Permisos
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item view-info" href = ""name ="<?php echo $key;?>">Ver info</a>
+                      <a class="dropdown-item view-info" name ="<?php echo $key;?>">Ver info</a>
+                      <a class="dropdown-item mod-per" data-toggle="modal" data-target="#modalPermisos" name ="<?php echo $key;?>">Modificar permisos</a>
                     </div>
                 
               </tr>
@@ -132,6 +133,80 @@ if (!isset ($_SESSION['directorio']) ){
   </a>
 
   <!-- Modal-->
+  <div class="modal fade" id="modalPermisos" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Manipulacion de permisos</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <p class="statusMsg"></p>
+                <form role="form">
+                    <div class="form-group">
+                        <h4 for="inputName">Propietario</h4>
+                        <div class="form-check form-check-inline">
+                        <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="readP" value="readP">
+                      <label class="form-check-label" for="inlineCheckbox1">lectura</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="writeP" value="writeP">
+                      <label class="form-check-label" for="inlineCheckbox2">escritura</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="execP" value="execP">
+                      <label class="form-check-label" for="inlineCheckbox3">ejecucion</label>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <h4 for="inputEmail">Grupo</h4>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="readG" value="readG">
+                          <label class="form-check-label" for="inlineCheckbox1">lectura</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="writeG" value="writeG">
+                          <label class="form-check-label" for="inlineCheckbox2">escritura</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="execG" value="execG">
+                          <label class="form-check-label" for="inlineCheckbox3">ejecucion</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h4 for="inputMessage">Otros</h4>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="readO" value="readO">
+                          <label class="form-check-label" for="inlineCheckbox1">lectura</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="writeO" value="writeO">
+                          <label class="form-check-label" for="inlineCheckbox2">escritura</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="execO" value="execO">
+                          <label class="form-check-label" for="inlineCheckbox3">ejecucion</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Cambiar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- end Modal-->
 
 
