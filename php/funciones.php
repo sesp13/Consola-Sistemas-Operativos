@@ -239,7 +239,7 @@ function cambiarPermisos($ruta, $nombre, $permisos){
   $rutaCompleta = $ruta . $nombre;
 
   if(is_file($rutaCompleta)){
-    exec("chmod $permisos $rutaCompleta");
+    exec("sudo chmod -R $permisos $rutaCompleta");
     return "Se cambiaron los permisos exitosamente";
   }
   else if(is_dir($rutaCompleta)){

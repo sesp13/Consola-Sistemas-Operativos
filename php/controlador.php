@@ -101,5 +101,11 @@ if(!strcmp($method,"modRuta")){
 	$permisos = intval("0".$_POST['permisos']);
 	$metodo = cambiarPermisos($ruta, $nombre, $permisos);
 	echo $metodo;
+}elseif (!strcmp($method,"cambiarUsuario")) {
+	$ruta = $_SESSION["directorio"];
+	$nombre = "/".$_POST['elemento'];
+	$usuario = $_POST['usuario'];
+	$metodo = cambiarPropietario($ruta, $nombre, $usuario);
+	echo $metodo;
 }
 ?>
