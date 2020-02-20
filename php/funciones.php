@@ -251,6 +251,17 @@ function cambiarPermisos($ruta, $nombre, $permisos){
   }
 }
 
+function cambiarPermisos2($ruta, $nombre, $permisos){
+
+  $rutaCompleta = $ruta . $nombre;
+  if(is_file($rutaCompleta) || is_dir($rutaCompleta)){
+    exec("chmod ".$permisos." ".$rutaCompleta);
+    return "Se cambiaron los permisos exitosamente";
+  }else{
+    return "No existe la extension a la cual le quieres cambiar los permisos";
+  }
+}
+
 //Cambiar propietario forma expreimental
 function cambiarPropietario($ruta,$nombre,$propietario){
   $rutaCompleta = $ruta . $nombre;
