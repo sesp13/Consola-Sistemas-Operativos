@@ -207,9 +207,7 @@ $(document).ready(function () {
 			type: 'POST',
 			data: { "elemento": elemento },
 			success: function (data) {
-				swal(data).then((value) => {
-					$("#page-top").load('index.php');
-				});
+				swal(data);
 			}
 		});
 	});
