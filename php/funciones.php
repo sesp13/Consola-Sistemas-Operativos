@@ -72,38 +72,14 @@ function crearDirectorio($ruta, $nombre, $permisos)
 //Eliminación de archivos y directorios
 
 //ELiminar directorio
-function eliminarDirectorio($ruta, $nombre)
-{
-  $rutaCompleta = $ruta . $nombre;
-  if (is_dir($rutaCompleta)) {
-    $array = verContenidoDirectorio($ruta, $nombre);
-    foreach ($array as $x) {
-      if($x!='.' &&  $x!='..'){
-        if(is_dir($rutaCompleta.$x)){
-          $arrayInterno = verContenidoDirectorio($rutaCompleta,$x);
-          $bool = false;
-          foreach($arrayInterno as $y){
-            if($y!='.' && $y!='..'){
-              $bool = true;
-            }
-          }
-          if($bool){
-            eliminarDirectorio($rutaCompleta,$x.'/');
-          }
-          else{
-            rmdir($rutaCompleta.$x);
-          }
-        }
-        else if (is_file($rutaCompleta.$x)){
-          unlink($rutaCompleta.$x);
-        }
-      }
-    }
-    rmdir($rutaCompleta);
-    return true;
-  } else {
-    return false;
-  }
+function eliminarDirectorio($ruta,$nombre){
+  $rutaCompleta = $ruta.$nombre;
+  if(is_dir($rutaCompleta)){
+    exec("rm -r $rutaCompleta");
+    return 'Directorio eliminado';
+  }else{
+    return 'EL directorio que quieres eliminar no existe';
+  }  
 }
 
 //ELiminar archivo
