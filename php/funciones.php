@@ -233,3 +233,20 @@ function verInformacionDePermisos($ruta,$nombre){
     return 'El fichero no existe';
   }
 }
+
+//Cambiar permisos forma expreimental
+function cambiarPermisos($ruta, $nombre, $permisos){
+  $rutaCompleta = $ruta . $nombre;
+
+  if(is_file($rutaCompleta)){
+    exec("chmod $permisos $rutaCompleta");
+    return "Se cambiaron los permisos exitosamente";
+  }
+  else if(is_dir($rutaCompleta)){
+    exec("chmod -R $permisos $rutaCompleta");
+    return "Se cambiaron los permisos exitosamente";
+  }
+  else{
+    return "No existe la extension a la cual le quieres cambiar los permisos";
+  }
+}
