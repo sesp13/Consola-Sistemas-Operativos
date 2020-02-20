@@ -165,7 +165,7 @@ function renombrarDirectorio($ruta, $nombreViejo, $nombreNuevo)
   }
 }
 
-//Obtener permisos de un archivo
+//Obtener permisos de un archivo o fichero
 function verPermisosArchivo($ruta, $nombre)
 {
   $rutaCompleta = $ruta . $nombre;
@@ -178,8 +178,8 @@ function verPermisosArchivo($ruta, $nombre)
   }
 }
 
-//Ver propietario del archivo
-function verPropietarioArchivo($ruta, $nombre)
+//Ver propietario del archivo, funciona para archivos y directorios
+function verPropietarioFichero($ruta, $nombre)
 {
   $rutaCompleta = $ruta . $nombre;
 
@@ -187,12 +187,12 @@ function verPropietarioArchivo($ruta, $nombre)
     $a  = posix_getpwuid(fileowner($rutaCompleta));
     return array_shift($a);
   } else {
-    return 'El archivo no existe';
+    return 'El fichero no existe';
   }
 }
 
-//Ver dueño del archivo
-function verGrupoArchivo($ruta, $nombre)
+//Ver dueño del fichero, funciona para archivos y directorios
+function verGrupoFichero($ruta, $nombre)
 {
   $rutaCompleta = $ruta . $nombre;
 
@@ -200,7 +200,7 @@ function verGrupoArchivo($ruta, $nombre)
     $a  = posix_getgrgid(filegroup($rutaCompleta));
     return array_shift($a);
   } else {
-    return 'El archivo no existe';
+    return 'El fichero no existe';
   }
 }
 
@@ -234,7 +234,7 @@ function verInformacionDePermisos($ruta,$nombre){
   }
 }
 
-//Cambiar permisos forma expreimental
+//Cambiar permisos 
 function cambiarPermisos($ruta, $nombre, $permisos){
   $rutaCompleta = $ruta . $nombre;
 
@@ -253,11 +253,11 @@ function cambiarPermisos($ruta, $nombre, $permisos){
 
 //Cambiar propietario forma expreimental
 function cambiarPropietario($ruta,$nombre,$propietario){
-  $rutaCompleta = $ruta.$nombre;
-  if(is_file($rutaCompleta)){
+  $rutaCompleta = $ruta . $nombre;
+  if(is_file($rutaCompleta) || is_dir($rutaCompleta)){
     exec("sudo chown $propietario $rutaCompleta");
-    return 'El dueño ha sido cambiado';
+    return "Se cambio el propietario exitosamente";
   }else{
-    return 'El archivo no existe';
+    return "No existe el fichero para cambiar el propietario";
   }
 }
