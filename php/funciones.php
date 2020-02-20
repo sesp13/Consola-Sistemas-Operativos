@@ -266,8 +266,13 @@ function cambiarPermisos2($ruta, $nombre, $permisos){
 function cambiarPropietario($ruta,$nombre,$propietario){
   $rutaCompleta = $ruta . $nombre;
   if(is_file($rutaCompleta) || is_dir($rutaCompleta)){
-    exec("sudo chown $propietario $rutaCompleta");
-    return "Se cambio el propietario exitosamente";
+    try{
+      exec("getent passwd | grep $propietario");
+      exec("sudo chown $propietario $rutaCompleta");
+      return "Se cambio el propietario exitosamente";
+    }catch (Exception $t){
+      return 'Error al cambiar';
+    }
   }else{
     return "No existe el fichero para cambiar el propietario";
   }
