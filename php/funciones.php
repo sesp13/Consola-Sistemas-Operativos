@@ -70,17 +70,8 @@ function crearDirectorio($ruta, $nombre, $permisos)
 }
 
 //Eliminación de archivos y directorios
-function eliminarArchivo($ruta, $nombre)
-{
-  $rutaCompleta = $ruta . $nombre;
-  if (is_file($rutaCompleta)) {
-    unlink($rutaCompleta);
-    return 'El archivo ha sido eliminado';
-  } else {
-    return 'El archivo que quieres eliminar no existe';
-  }
-}
 
+//ELiminar directorio
 function eliminarDirectorio($ruta, $nombre)
 {
   $rutaCompleta = $ruta . $nombre;
@@ -112,6 +103,18 @@ function eliminarDirectorio($ruta, $nombre)
     return true;
   } else {
     return false;
+  }
+}
+
+//ELiminar archivo
+function eliminarArchivo($ruta, $nombre)
+{
+  $rutaCompleta = $ruta . $nombre;
+  if (is_file($rutaCompleta)) {
+    unlink($rutaCompleta);
+    return 'El archivo ha sido eliminado';
+  } else {
+    return 'El archivo que quieres eliminar no existe';
   }
 }
 
