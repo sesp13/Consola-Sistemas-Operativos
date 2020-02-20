@@ -75,5 +75,10 @@ if(!strcmp($method,"modRuta")){
 	$_SESSION["nombreElentoCopiado"] = $nombre;
 	$_SESSION["CP"] = 'cortar';
 	echo $_SESSION["rutaCopiada"].$_SESSION["nombreElentoCopiado"];
+}elseif (!strcmp($method,"verInfoPermisos")) {
+	$ruta = $_SESSION["directorio"];
+	$nombre = "/".$_POST['elemento'];
+	$metodo = verInformacionDePermisos($ruta, $nombre);
+	echo $metodo;
 }
 ?>
