@@ -90,14 +90,12 @@ if (!isset ($_SESSION['directorio']) ){
                 
               
                   <button type="button" class="btn btn-light cut" name ="<?php echo $key;?>">Cortar</button>
-                  <div class="btn-group">
                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Permisos
                     </button>
                     <div class="dropdown-menu">
                       <a class="dropdown-item view-info" href = ""name ="<?php echo $key;?>">Ver info</a>
                     </div>
-                  </div>
                 
               </tr>
 
