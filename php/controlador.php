@@ -63,6 +63,10 @@ if(!strcmp($method,"modRuta")){
 		$metodo = copiarPegarArchivo($rutaVieja, $rutaNueva, $archivo);
 	}elseif (!strcmp($accion,"cortar")) {
 		$metodo = moverFichero($rutaVieja, $rutaNueva, $archivo);
+	}elseif (!strcmp($accion,"copiarCarpeta")) {
+		$metodo = copiarPegarDirectorio($rutaVieja, $rutaNueva, $archivo);
+	}else{
+		$metodo = "Error";
 	}
 	$_SESSION["rutaCopiada"] = "";
 	$_SESSION["nombreElentoCopiado"] = "";
@@ -80,5 +84,12 @@ if(!strcmp($method,"modRuta")){
 	$nombre = "/".$_POST['elemento'];
 	$metodo = verInformacionDePermisos($ruta, $nombre);
 	echo $metodo;
+}elseif (!strcmp($method,"copiarCarpeta")) {
+	$ruta = $_SESSION["directorio"];
+	$nombre = "/".$_POST['carpeta'];
+	$_SESSION["rutaCopiada"] = $ruta;
+	$_SESSION["nombreElentoCopiado"] = $nombre;
+	$_SESSION["CP"] = 'copiarCarpeta';
+	echo $_SESSION["rutaCopiada"].$_SESSION["nombreElentoCopiado"];
 }
 ?>

@@ -123,15 +123,9 @@ $(document).ready(function () {
 			type: 'POST',
 			data: { "carpeta": carpeta },
 			success: function (data) {
-				if (data == "1") {
-					swal("Se elimino el directorio").then((value) => {
-						$("#page-top").load('index.php');
-					});
-				} else {
-					swal("Error").then((value) => {
-						$("#page-top").load('index.php');
-					});
-				}
+				swal(data).then((value) => {
+					$("#page-top").load('index.php');
+				});
 
 
 
@@ -161,6 +155,19 @@ $(document).ready(function () {
 			url: 'php/controlador.php?method=copiarArchivo',
 			type: 'POST',
 			data: { "archivo": archivo },
+			success: function (data) {
+				console.log(data);
+			}
+		});
+	});
+	$(".copy-dir").click(function (e) {
+		e.preventDefault();
+		var carpeta = $(this).attr('name');
+		console.log(carpeta);
+		$.ajax({
+			url: 'php/controlador.php?method=copiarCarpeta',
+			type: 'POST',
+			data: { "carpeta": carpeta },
 			success: function (data) {
 				console.log(data);
 			}

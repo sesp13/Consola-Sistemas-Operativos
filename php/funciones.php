@@ -75,7 +75,7 @@ function crearDirectorio($ruta, $nombre, $permisos)
 function eliminarDirectorio($ruta,$nombre){
   $rutaCompleta = $ruta.$nombre;
   if(is_dir($rutaCompleta)){
-    exec("rm -r $rutaCompleta");
+    exec("rm -R $rutaCompleta");
     return 'Directorio eliminado';
   }else{
     return 'EL directorio que quieres eliminar no existe';
