@@ -99,7 +99,7 @@ if (!isset ($_SESSION['directorio']) ){
                       <a class="dropdown-item view-info" name ="<?php echo $key;?>">Ver info</a>
                       <a class="dropdown-item mod-per" data-toggle="modal" data-target="#modalPermisos" name ="<?php echo $key;?>">Modificar permisos</a>
                     </div>
-                
+                    <button type="button" class="btn btn-secondary change-prop" name ="<?php echo $key;?>">Cambiar propietario</button>
               </tr>
 
               <?php 
