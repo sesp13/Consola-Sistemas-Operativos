@@ -5,6 +5,9 @@ include 'php/funciones.php';
 session_start();
 /*session is started if you don't write this line can't use $_Session  global variable*/
 if (!isset ($_SESSION['directorio']) ){
+  if(!isset ($_SESSION['directorioInicial'])){
+    $_SESSION['directorioInicial'] = obtenerDirectorioActual()."/carpetaDePrueba";
+  }
   $_SESSION['directorio'] = obtenerDirectorioActual()."/carpetaDePrueba";
 }
 ?>
@@ -56,14 +59,13 @@ if (!isset ($_SESSION['directorio']) ){
           <tbody>
             <tr>
               <td>
-                  <button type="button" class="btn btn-danger" id="return" >
+                  <button type="button" class="btn btn-danger" id="return" <?php if(!strcmp($_SESSION['directorioInicial'],$_SESSION['directorio'])){echo "disabled";}else{echo "";} ?> >
                     Volver
                   </button>
               </td>
             </tr>
             
             <?php 
-
             $carpetas = verContenidoDirectorio($_SESSION["directorio"],"");
             foreach ($carpetas as $key) {
               if(strcmp($key,".") && strcmp($key,"..")){
