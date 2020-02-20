@@ -250,3 +250,14 @@ function cambiarPermisos($ruta, $nombre, $permisos){
     return "No existe la extension a la cual le quieres cambiar los permisos";
   }
 }
+
+//Cambiar propietario forma expreimental
+function cambiarPropietario($ruta,$nombre,$propietario){
+  $rutaCompleta = $ruta.$nombre;
+  if(is_file($rutaCompleta)){
+    exec("sudo chown $propietario $rutaCompleta");
+    return 'El dueño ha sido cambiado';
+  }else{
+    return 'El archivo no existe';
+  }
+}

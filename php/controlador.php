@@ -82,6 +82,8 @@ if(!strcmp($method,"modRuta")){
 }elseif (!strcmp($method,"verInfoPermisos")) {
 	$ruta = $_SESSION["directorio"];
 	$nombre = "/".$_POST['elemento'];
+	$_SESSION["rutaCambiarPermisos"] = $ruta;
+	$_SESSION["nombreCambiarPermisos"] = $nombre;
 	$metodo = verInformacionDePermisos($ruta, $nombre);
 	echo $metodo;
 }elseif (!strcmp($method,"copiarCarpeta")) {
@@ -91,5 +93,13 @@ if(!strcmp($method,"modRuta")){
 	$_SESSION["nombreElentoCopiado"] = $nombre;
 	$_SESSION["CP"] = 'copiarCarpeta';
 	echo $_SESSION["rutaCopiada"].$_SESSION["nombreElentoCopiado"];
+}elseif (!strcmp($method,"cambiarPermisos")) {
+	$ruta = $_SESSION["rutaCambiarPermisos"];
+	$nombre = $_SESSION["nombreCambiarPermisos"];
+	$_SESSION["rutaCambiarPermisos"] = "";
+	$_SESSION["nombreCambiarPermisos"] = "";
+	$permisos = intval("0".$_POST['permisos']);
+	$metodo = cambiarPermisos($ruta, $nombre, $permisos);
+	echo $metodo;
 }
 ?>

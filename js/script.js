@@ -259,4 +259,76 @@ $(document).ready(function () {
 			}
 		});
 	});
+	$("#change-permisos").click(function (e) {
+		var readP = document.getElementById('readP').checked;
+		var writeP = document.getElementById('writeP').checked;
+		var execP = document.getElementById('execP').checked;
+		var readG = document.getElementById('readG').checked;
+		var writeG = document.getElementById('writeG').checked;
+		var execG = document.getElementById('execG').checked;
+		var readO = document.getElementById('readO').checked;
+		var writeO = document.getElementById('writeO').checked;
+		var execO = document.getElementById('execO').checked;
+		if(readP){
+			readP = "1";
+		}else{
+			readP = "0";
+		}
+		if(writeP){
+			writeP = "1";
+		}else{
+			writeP = "0";
+		}
+		if(execP){
+			execP = "1";
+		}else{
+			execP = "0";
+		}
+		if(readG){
+			readG = "1";
+		}else{
+			readG = "0";
+		}
+		if(writeG){
+			writeG = "1";
+		}else{
+			writeG = "0";
+		}
+		if(execG){
+			execG = "1";
+		}else{
+			execG = "0";
+		}
+		if(readO){
+			readO = "1";
+		}else{
+			readO = "0";
+		}
+		if(writeO){
+			writeO = "1";
+		}else{
+			writeO = "0";
+		}
+		if(execO){
+			execO = "1";
+		}else{
+			execO = "0";
+		}
+
+		var usu = readP+writeP+execP;
+		var grup = readG+writeG+execG;
+		var otro = readO+writeO+execO;
+		usu = parseInt(usu,2).toString();
+		grup = parseInt(grup,2).toString();
+		otro = parseInt(otro,2).toString();
+		var permisos = usu + grup + otro;
+		$.ajax({
+			url: 'php/controlador.php?method=cambiarPermisos',
+			type: 'POST',
+			data: {"permisos": permisos},
+			success: function (data) {
+				swal(data)
+			}
+		});
+	});
 });

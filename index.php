@@ -202,7 +202,7 @@ if (!isset ($_SESSION['directorio']) ){
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Cambiar</button>
+                <button type="button" class="btn btn-primary submitBtn" id = "change-permisos">Cambiar</button>
             </div>
         </div>
     </div>
