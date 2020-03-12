@@ -331,4 +331,27 @@ $(document).ready(function () {
 			}
 		});
 	});
+	$(".change-prop").click(function (e) {
+		e.preventDefault();
+		var elemento = $(this).attr('name');
+		console.log(elemento);
+		swal("Nombre del nuevo usuario:", {
+			content: "input",
+		})
+			.then((value) => {
+				$.ajax({
+					url: 'php/controlador.php?method=cambiarUsuario',
+					type: 'POST',
+					data: {
+						"elemento": elemento,
+						"usuario": value
+					},
+					success: function (data) {
+						swal(data).then((value) => {
+							$("#page-top").load('index.php');
+						});
+					}
+				});
+			});
+	});
 });
